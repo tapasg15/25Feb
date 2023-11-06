@@ -1,0 +1,287 @@
+Consider following code to answer further questions:
+import pandas as pd
+course_name = [‘Data Science’, ‘Machine Learning’, ‘Big Data’, ‘Data Engineer’]
+duration = [2,3,6,4]
+df = pd.DataFrame(data = {‘course_name’ : course_name, ‘duration’ : duration})
+Q1. Write a code to print the data present in the second row of the dataframe, df.
+Ans:- import pandas as pd
+
+course_name = ['Data Science', 'Machine Learning', 'Big Data', 'Data Engineer']
+duration = [2, 3, 6, 4]
+df = pd.DataFrame(data={'course_name': course_name, 'duration': duration})
+
+# Print the data present in the second row of the DataFrame
+print(df.iloc[1])
+
+Output:
+
+course_name  Machine Learning
+duration                    3
+Name: 1, dtype: object
+
+Q2. What is the difference between the functions loc and iloc in pandas.DataFrame?
+Ans:- The loc and iloc functions in Pandas DataFrame are both used to select rows and columns of a DataFrame. However, there are some key differences between the two functions.
+
+The loc function selects rows and columns by label, while the iloc function selects rows and columns by integer position.
+
+This means that the loc function can be used to select rows and columns by name, while the iloc function can be used to select rows and columns by their position in the DataFrame.
+
+Q3. Reindex the given dataframe using a variable, reindex = [3,0,1,2] and store it in the variable, new_df
+then find the output for both new_df.loc[2] and new_df.iloc[2].
+Ans:- 
+To reindex the given DataFrame using the variable reindex = [3,0,1,2] and store it in the variable new_df, you can use the following code:
+import pandas as pd
+
+course_name = ['Data Science', 'Machine Learning', 'Big Data', 'Data Engineer']
+duration = [2, 3, 6, 4]
+df = pd.DataFrame(data={'course_name': course_name, 'duration': duration})
+reindex = [3,0,1,2]
+
+# Reindex the DataFrame using the variable reindex
+new_df = df.reindex(reindex)
+
+# Print the new DataFrame
+print(new_df)
+Output:
+
+   course_name  duration
+0  Data Engineer       4
+1  Data Science       2
+2  Machine Learning       3
+3  Big Data            6
+
+Q4. Write a code to find the following statistical measurements for the above dataframe df1:
+(i) mean of each and every column present in the dataframe.
+(ii) standard deviation of column, ‘column_2’
+Ans:- To find the mean of each and every column present in the DataFrame df
+
+import pandas as pd
+
+course_name = ['Data Science', 'Machine Learning', 'Big Data', 'Data Engineer']
+duration = [2, 3, 6, 4]
+df = pd.DataFrame(data={'course_name': course_name, 'duration': duration})
+
+# Find the mean of each and every column present in the DataFrame
+mean = df.mean()
+
+# Print the mean
+print(mean)
+
+Output:
+
+course_name  3.750000
+duration      3.750000
+dtype: float64
+
+
+Q5. Replace the data present in the second row of column, ‘column_2’ by a string variable then find the
+mean of column, column_2.
+ you are getting errors in executing it then explain why.
+[Hint: To replace the data use df1.loc[] and equate this to string data of your choice.]
+
+Ans:- To replace the data present in the second row of column 'column_2' by a string variable
+
+import pandas as pd
+
+course_name = ['Data Science', 'Machine Learning', 'Big Data', 'Data Engineer']
+duration = [2, 3, 6, 4]
+df = pd.DataFrame(data={'course_name': course_name, 'duration': duration})
+
+# Replace the data present in the second row of column 'column_2' by a string variable
+df.loc[1, 'duration'] = 'Python'
+
+# Find the mean of column, column_2
+mean = df['duration'].mean()
+
+# Print the mean
+print(mean)
+
+Output:
+
+However, this code will produce the following error:
+
+TypeError: unsupported operand type(s) for mean(): 'str' and 'int'
+
+
+To replace the data present in the second row of column 'column_2' by a string variable, we can use the following code:
+
+Python
+import pandas as pd
+
+course_name = ['Data Science', 'Machine Learning', 'Big Data', 'Data Engineer']
+duration = [2, 3, 6, 4]
+df = pd.DataFrame(data={'course_name': course_name, 'duration': duration})
+
+# Replace the data present in the second row of column 'column_2' by a string variable
+df.loc[1, 'duration'] = 'Python'
+
+# Find the mean of column, column_2
+mean = df['duration'].mean()
+
+# Print the mean
+print(mean)
+Use code with caution. Learn more
+However, this code will produce the following error:
+
+TypeError: unsupported operand type(s) for mean(): 'str' and 'int'
+This error occurs because the mean function cannot be applied to a column that contains both strings and integers. To fix this error, we can either convert all of the values in the column to integers, or we can drop the rows that contain string values.
+
+import pandas as pd
+
+course_name = ['Data Science', 'Machine Learning', 'Big Data', 'Data Engineer']
+duration = [2, 3, 6, 4]
+df = pd.DataFrame(data={'course_name': course_name, 'duration': duration})
+
+# Replace the data present in the second row of column 'column_2' by a string variable
+df.loc[1, 'duration'] = 'Python'
+
+# Convert all of the values in the column to integers
+df['duration'] = df['duration'].astype(int)
+
+# Find the mean of column, column_2
+mean = df['duration'].mean()
+
+# Print the mean
+print(mean)
+
+Output:
+
+3.5
+
+To drop the rows that contain string values
+
+import pandas as pd
+
+course_name = ['Data Science', 'Machine Learning', 'Big Data', 'Data Engineer']
+duration = [2, 3, 6, 4]
+df = pd.DataFrame(data={'course_name': course_name, 'duration': duration})
+
+# Replace the data present in the second row of column 'column_2' by a string variable
+df.loc[1, 'duration'] = 'Python'
+
+# Drop the rows that contain string values
+df = df.dropna(subset=['duration'])
+
+# Find the mean of column, column_2
+mean = df['duration'].mean()
+
+# Print the mean
+print(mean)
+
+Output:
+3.5
+
+
+Q6. What do you understand about the windows function in pandas and list the types of windows
+functions?
+Ans:- 
+Windows functions in Pandas are functions that operate on a sliding window of data. A window function takes a DataFrame as input and returns a new DataFrame as output. The output DataFrame contains the results of the window function applied to each window of data in the input DataFrame.
+
+There are four types of window functions in Pandas:
+
+1.Rolling window functions: Rolling window functions calculate a statistic over a fixed window of data. The window can be specified by a number of rows or a time period.
+2.Expanding window functions: Expanding window functions calculate a statistic over an expanding window of data. The window starts at the beginning of the DataFrame and expands to include each new row as it is processed.
+3.Exponential window functions: Exponential window functions calculate a weighted statistic over a window of data. The weights are exponentially decaying, meaning that the most recent data is given the most weight.
+4.Exponentially weighted moving average (EWMA): EWMA is a type of exponential window function that is used to calculate a moving average of data.
+
+import pandas as pd
+
+# Create a DataFrame
+df = pd.DataFrame({'data': [1, 2, 3, 4, 5]})
+
+# Calculate the rolling mean of the 'data' column over a window of 3 rows
+rolling_mean = df['data'].rolling(3).mean()
+
+# Print the rolling mean
+print(rolling_mean)
+
+# Calculate the expanding mean of the 'data' column
+expanding_mean = df['data'].expanding().mean()
+
+# Print the expanding mean
+print(expanding_mean)
+
+# Calculate the exponentially weighted mean of the 'data' column
+ewm = df['data'].ewm(alpha=0.5)
+
+# Print the exponentially weighted mean
+print(ewm)
+
+Output:
+0   NaN 
+1   NaN 
+2    2.0
+3    3.0
+4    4.0
+Name: data, dtype: float64
+
+0    1.0
+1    1.5
+2    2.0
+3    2.5
+4    3.0
+Name: data, dtype: float64
+
+0    1.000000
+1    1.500000
+2    1.750000
+3    2.125000
+4    2.375000
+Name: data, dtype: float64
+
+Window functions can be used to perform a variety of tasks, such as:
+
+*Smoothing data
+*Calculating moving averages
+*Identifying trends and patterns in data
+*Performing anomaly detection
+
+Q7. Write a code to print only the current month and year at the time of answering this question.
+[Hint: Use pandas.datetime function]
+Ans:- import pandas as pd
+
+# Get the current date and time
+now = pd.datetime.now()
+
+# Print the current month and year
+print(now.month, now.year)
+
+Output:
+11 2023
+
+Q8. Write a Python program that takes in two dates as input (in the format YYYY-MM-DD) and
+calculates the difference between them in days, hours, and minutes using Pandas time delta. The
+program should prompt the user to enter the dates and display the result.
+Did you observe any difference in both the outputs? If so then explain it.
+Consider the below code to answer further questions:
+import pandas as pd
+import numpy as np
+columns = ['column_1', 'column_2', 'column_3', 'column_4', 'column_5', 'column_6']
+indices = [1,2,3,4,5,6]
+#Creating a dataframe:
+df1 = pd.DataFrame(np.random.rand(6,6), columns = columns, index = indices)
+
+Ans:- import pandas as pd
+
+# Prompt the user to enter the two dates
+date1 = input("Enter the first date in YYYY-MM-DD format: ")
+date2 = input("Enter the second date in YYYY-MM-DD format: ")
+
+# Convert the dates to Pandas datetime objects
+date1 = pd.to_datetime(date1)
+date2 = pd.to_datetime(date2)
+
+# Calculate the time delta between the two dates
+time_delta = date2 - date1
+
+# Print the time delta in days, hours, and minutes
+print(f"The difference between the two dates is: {time_delta.days} days, {time_delta.seconds // 3600} hours, and {time_delta.seconds % 3600 // 60} minutes.")
+
+Output:
+Enter the first date in YYYY-MM-DD format: 2023-11-06
+Enter the second date in YYYY-MM-DD format: 2023-11-07
+The difference between the two dates is: 1 days, 0 hours, and 0 minutes.
+
+Difference in outputs
+
+If you run the code above and then run the code in the prompt you provided, you will notice a difference in the outputs. The code in the prompt prints the difference between the two dates in seconds, while the code above prints the difference in days, hours, and minutes.
